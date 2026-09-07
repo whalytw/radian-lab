@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>式的運算｜互動學習實驗室</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--ink:#24334a;--muted:#68778a;--line:#dce2ea;--accent:#4168aa;--orange:#d78437;--green:#237a57;--red:#b44949;--soft:#eef3fb;--soft2:#fff4e7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}button,input,select{font:inherit}button{cursor:pointer}
+header{background:linear-gradient(120deg,#3c609d,#505b78);color:#fff;padding:28px 20px}.wrap{max-width:1160px;margin:auto;padding:0 18px}.hero{display:grid;grid-template-columns:1.5fr .8fr;gap:20px;align-items:center}h1{font-size:clamp(28px,4vw,46px);margin:0 0 8px}.hero p{margin:0;color:#e9eef9}.badge{justify-self:end;background:#ffffff18;border:1px solid #ffffff44;border-radius:18px;padding:14px 18px}
+nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}.nav{display:flex;gap:6px;overflow:auto;padding:9px 18px;max-width:1160px;margin:auto}.nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:800;font-size:14px;padding:8px 10px;border-radius:9px}.nav a:hover{background:var(--soft)}
+main{padding:22px 0 40px}section{margin-bottom:22px;scroll-margin-top:70px}.title{display:flex;gap:10px;align-items:baseline;margin-bottom:10px}.title h2{margin:0;font-size:24px}.title span{color:var(--muted);font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px #24334a12}.grid2{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.5fr);gap:16px}.grid2e{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.control{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.control label{display:flex;justify-content:space-between;font-weight:800}input[type=range]{width:100%;accent-color:var(--accent)}select,input[type=number]{width:100%;padding:9px 10px;border:1px solid #bac5d3;border-radius:10px;background:#fff;color:var(--ink);font-size:16px}
+button{border:1px solid #bac5d3;background:#fff;color:var(--ink);border-radius:10px;padding:8px 11px;font-weight:800}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}button.warn{background:var(--soft2);border-color:#efc28d}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.note{background:var(--soft);border-left:4px solid var(--accent);padding:10px 12px;border-radius:9px}.result{border:1px solid var(--line);background:#fbfcfe;border-radius:14px;padding:12px}.formula{font-family:"Cambria Math","Times New Roman",serif;font-size:clamp(19px,3vw,28px);font-weight:900;text-align:center;background:#fbfcff;border:1px solid var(--line);border-radius:13px;padding:11px}
+.eq{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}.eqbox{border:1px solid var(--line);border-radius:13px;padding:12px;text-align:center;background:#fbfcfe}.eqsign{font-size:26px;font-weight:900;color:var(--green)}.big{display:block;font-size:24px;font-weight:900}.math{font-family:"Cambria Math","Times New Roman",serif}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi>div{border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;background:#fbfcfe}.kpi b{display:block;color:var(--muted);font-size:12px}.kpi span{font-size:19px;font-weight:900}
+.pills{display:flex;gap:7px;flex-wrap:wrap}.pill{border-radius:999px}.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.barbox{border:1px solid var(--line);border-radius:14px;padding:14px}.barrow{display:grid;grid-template-columns:110px 1fr 60px;gap:9px;align-items:center;margin:9px 0}.bar{height:22px;border-radius:999px;background:#e8edf5;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:999px}.fill.orange{background:var(--orange)}
+.quizq{padding:13px 0;border-bottom:1px solid var(--line)}.options{display:grid;gap:6px;margin-top:8px}.options label{display:flex;gap:8px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}.options label:has(input:checked){border-color:var(--accent);background:var(--soft)}.feedback{margin-top:7px;font-weight:800}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}
+.warntext{color:var(--red);font-weight:800}.footer{text-align:center;color:var(--muted);font-size:13px;padding:16px}
+@media(max-width:850px){.hero,.grid2,.grid2e{grid-template-columns:1fr}.badge{justify-self:start}.kpi{grid-template-columns:1fr 1fr}}@media(max-width:540px){.wrap{padding:0 11px}.card{padding:13px}.eq{grid-template-columns:1fr}.eqsign{text-align:center}.barrow{grid-template-columns:90px 1fr 55px}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div><h1>式的運算｜互動學習實驗室</h1><p>自己代數、驗證、化簡與比較，把乘法公式、分式、根式、算幾不等式真正看懂。</p></div><div class="badge"><b>先操作，再整理規律</b><br>乘法公式 · 分式 · 根式 · 有理化 · 算幾不等式</div></div></header>
+<nav><div class="nav"><a href="#f1">乘法公式</a><a href="#f2">分式</a><a href="#f3">x 與 1/x</a><a href="#f4">根式</a><a href="#f5">有理化／雙重根式</a><a href="#f6">算幾不等式</a><a href="#quiz">自我檢核</a></div></nav>
+
+<main class="wrap">
+<section id="f1"><div class="title"><h2>1. 乘法公式實驗室</h2><span>把 a、b、c 換成數字驗證</span></div><div class="card grid2">
+<div><label><b>選公式</b></label><select id="fs"><option value="sp">(a+b)²</option><option value="sm">(a−b)²</option><option value="ds">a²−b²</option><option value="s3">(a+b+c)²</option><option value="cp">(a+b)³</option><option value="cm">(a−b)³</option><option value="sc">a³+b³</option><option value="dc">a³−b³</option></select>
+<div class="control"><label>a <output id="ao">2</output></label><input id="a" type="range" min="-6" max="6" step="1" value="2"></div><div class="control"><label>b <output id="bo">3</output></label><input id="b" type="range" min="-6" max="6" step="1" value="3"></div><div class="control" id="cw"><label>c <output id="co">1</output></label><input id="c" type="range" min="-6" max="6" step="1" value="1"></div>
+<div class="note">先看公式，再拖動數值。公式中的 a、b、c 換成任何數字都仍然成立。</div></div>
+<div><div class="formula" id="fid"></div><div class="eq" style="margin-top:12px"><div class="eqbox">左式<strong class="big" id="lv"></strong></div><div class="eqsign">=</div><div class="eqbox">右式<strong class="big" id="rv"></strong></div></div><div class="result" style="margin-top:10px" id="fstep"></div></div>
+</div></section>
+
+<section id="f2"><div class="title"><h2>2. 分式運算</h2><span>約分、通分，也別忘了原式限制</span></div><div class="card grid2">
+<div><label><b>選一個式子</b></label><select id="fc"><option value="1">(x−2)/(x+2) − (x+2)/(x−2)</option><option value="2">(x²−4)/(x²+5x+6)</option><option value="3">x/(x²−1) − 1/(x+1)</option></select><div class="control"><label>x <output id="xo">3</output></label><input id="x" type="range" min="-8" max="8" step=".5" value="3"></div><div class="note">分式化簡後，原式「分母不能為 0」的條件仍要保留。</div></div>
+<div><div class="formula" id="forig"></div><div class="result" style="margin-top:10px">化簡：<strong class="big math" id="fsimp"></strong><span id="frest"></span></div><div class="eq" style="margin-top:10px"><div class="eqbox">原式<strong id="fov"></strong></div><div class="eqsign">=</div><div class="eqbox">化簡式<strong id="fsv"></strong></div></div><div class="warntext" id="fw"></div></div>
+</div></section>
+
+<section id="f3"><div class="title"><h2>3. x 與 1/x 的公式連鎖</h2><span>從平方公式、立方公式往回推</span></div><div class="card grid2">
+<div><label><b>已知條件</b></label><select id="rm"><option value="p">x + 1/x = S</option><option value="m">x − 1/x = D</option></select><div class="control"><label>S 或 D <output id="ro">4</output></label><input id="r" type="range" min="-8" max="8" step="1" value="4"></div><div class="note">先把「平方」寫出來，會自然出現 x²+1/x²；再利用立方公式得到三次式。</div></div>
+<div><div class="formula" id="rg"></div><div class="kpi" style="margin-top:10px"><div><b>x²+1/x²</b><span id="r2"></span></div><div><b id="r3l"></b><span id="r3"></span></div><div><b>核心</b><span>乘法公式</span></div></div><div class="result" id="rd" style="margin-top:10px"></div></div>
+</div></section>
+
+<section id="f4"><div class="title"><h2>4. 根式運算</h2><span>化簡根號，並理解 √(a²)=|a|</span></div><div class="card grid2">
+<div><div class="control"><label>√n 中的 n <output id="no">18</output></label><input id="rn" type="range" min="1" max="200" step="1" value="18"></div><div class="result"><strong class="big math" id="rs"></strong><div id="rf"></div></div><div class="note" style="margin-top:10px">找出 n 裡最大的完全平方因數，就能把平方數移出根號。</div></div>
+<div><h3 style="margin-top:0">√(a²) 為什麼不是永遠等於 a？</h3><div class="control"><label>a <output id="aao">-3</output></label><input id="aa" type="range" min="-8" max="8" step="1" value="-3"></div><div class="eq"><div class="eqbox">a²<strong id="aas"></strong></div><div class="eqsign">→</div><div class="eqbox">√(a²)<strong id="aaresult"></strong></div></div><div class="note" id="aanote" style="margin-top:10px"></div></div>
+</div></section>
+
+<section id="f5"><div class="title"><h2>5. 有理化與雙重根式</h2><span>共軛與平方公式的另一種用法</span></div><div class="card grid2e">
+<div><h3 style="margin-top:0">分母有理化</h3><div class="grid2e"><div><label>p</label><input id="p" type="number" value="2"></div><div><label>q</label><input id="q" type="number" min="0" value="3"></div></div><div class="formula" id="rexpr" style="margin-top:10px"></div><div class="result">同乘共軛：<b class="math" id="conj"></b><strong class="big math" id="rres"></strong><div id="rexp"></div></div></div>
+<div><h3 style="margin-top:0">雙重根式生成器</h3><div class="grid2e"><div class="control"><label>u <output id="uo">5</output></label><input id="u" type="range" min="1" max="12" value="5"></div><div class="control"><label>v <output id="vo">3</output></label><input id="v" type="range" min="1" max="12" value="3"></div></div><div class="pills"><button class="pill active" data-s="+">加號型</button><button class="pill" data-s="-">減號型</button></div><div class="formula" id="dexpr" style="margin-top:10px"></div><div class="note" id="dexp"></div></div>
+</div></section>
+
+<section id="f6"><div class="title"><h2>6. 算幾不等式</h2><span>(a+b)/2 ≥ √(ab)，等號在 a=b</span></div><div class="card grid2">
+<div><div class="control"><label>a <output id="amo">4</output></label><input id="am1" type="range" min="0" max="20" step=".5" value="4"></div><div class="control"><label>b <output id="bmo">9</output></label><input id="am2" type="range" min="0" max="20" step=".5" value="9"></div><div class="kpi"><div><b>AM</b><span id="amv"></span></div><div><b>GM</b><span id="gmv"></span></div><div><b>差</b><span id="gap"></span></div></div><div class="note" id="amnote"></div></div>
+<div class="barbox"><div class="barrow"><b>算術平均</b><div class="bar"><div class="fill" id="amb"></div></div><span id="amn"></span></div><div class="barrow"><b>幾何平均</b><div class="bar"><div class="fill orange" id="gmb"></div></div><span id="gmn"></span></div><hr style="border:0;border-top:1px solid var(--line)"><label><b>最佳化小實驗</b></label><select id="om"><option value="prod">固定乘積 ab，找 a+b 最小值</option><option value="sum">固定和 a+b，找 ab 最大值</option></select><div class="control"><label>固定值 <output id="oto">64</output></label><input id="ot" type="range" min="4" max="144" step="1" value="64"></div><div class="result"><strong class="big" id="oa"></strong><div id="oe"></div></div></div>
+</div></section>
+
+<section id="quiz"><div class="title"><h2>7. 自我檢核</h2><span>100 題題庫，每次隨機抽 5 題</span></div><div class="card"><div class="note">每次從 <b>100 題</b>中隨機抽 5 題；批改後會顯示解析。想再練一組就按「重新出題」。</div><div id="qq"></div><div class="toolbar"><button class="primary" id="check">批改全部</button><button id="clear">清除答案</button><button class="warn" id="new">重新出題</button><strong id="score"></strong></div></div></section>
+<div class="footer">答錯時，回到上面的互動區改幾個數字，再看一次公式或不等式為什麼成立。</div>
+</main>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const N=v=>Number.isFinite(v)?Number(v.toFixed(6)).toString():'未定義';
+const G=(a,b)=>{a=Math.abs(Math.trunc(a));b=Math.abs(Math.trunc(b));while(b)[a,b]=[b,a%b];return a||1};
+const F=(a,b)=>{if(b===0)return'未定義';if(b<0){a=-a;b=-b}const g=G(a,b);a/=g;b/=g;return b===1?String(a):`${a}/${b}`};
+const U=a=>[...new Set(a)], SH=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* formula lab */
+const FM={
+sp:['(a+b)² = a²+2ab+b²',0,(a,b,c)=>[(a+b)**2,a*a+2*a*b+b*b]],
+sm:['(a−b)² = a²−2ab+b²',0,(a,b,c)=>[(a-b)**2,a*a-2*a*b+b*b]],
+ds:['a²−b² = (a+b)(a−b)',0,(a,b,c)=>[a*a-b*b,(a+b)*(a-b)]],
+s3:['(a+b+c)² = a²+b²+c²+2ab+2bc+2ca',1,(a,b,c)=>[(a+b+c)**2,a*a+b*b+c*c+2*a*b+2*b*c+2*c*a]],
+cp:['(a+b)³ = a³+3a²b+3ab²+b³',0,(a,b,c)=>[(a+b)**3,a**3+3*a*a*b+3*a*b*b+b**3]],
+cm:['(a−b)³ = a³−3a²b+3ab²−b³',0,(a,b,c)=>[(a-b)**3,a**3-3*a*a*b+3*a*b*b-b**3]],
+sc:['a³+b³ = (a+b)(a²−ab+b²)',0,(a,b,c)=>[a**3+b**3,(a+b)*(a*a-a*b+b*b)]],
+dc:['a³−b³ = (a−b)(a²+ab+b²)',0,(a,b,c)=>[a**3-b**3,(a-b)*(a*a+a*b+b*b)]]
+};
+function R1(){let k=$('#fs').value,[id,use,cal]=FM[k],a=+$('input#a').value,b=+$('input#b').value,c=+$('input#c').value;$('#ao').textContent=a;$('#bo').textContent=b;$('#co').textContent=c;$('#cw').style.display=use?'block':'none';$('#fid').textContent=id;let [l,r]=cal(a,b,c);$('#lv').textContent=N(l);$('#rv').textContent=N(r);$('#fstep').innerHTML=`代入 a=${a}、b=${b}${use?'、c='+c:''} 後，左右兩邊都得到 <b>${N(l)}</b>。`}
+['fs','a','b','c'].forEach(id=>$('#'+id).addEventListener(id==='fs'?'change':'input',R1));
+
+/* fraction lab */
+const FC={
+1:{o:'(x−2)/(x+2) − (x+2)/(x−2)',s:'−8x/(x²−4)',r:'x ≠ 2, −2',v:x=>x!==2&&x!==-2,f:x=>(x-2)/(x+2)-(x+2)/(x-2),g:x=>-8*x/(x*x-4)},
+2:{o:'(x²−4)/(x²+5x+6)',s:'(x−2)/(x+3)',r:'x ≠ −2, −3',v:x=>x!==-2&&x!==-3,f:x=>(x*x-4)/(x*x+5*x+6),g:x=>(x-2)/(x+3)},
+3:{o:'x/(x²−1) − 1/(x+1)',s:'1/(x²−1)',r:'x ≠ 1, −1',v:x=>x!==1&&x!==-1,f:x=>x/(x*x-1)-1/(x+1),g:x=>1/(x*x-1)}
+};
+function R2(){let c=FC[$('#fc').value],x=+$('input#x').value;$('#xo').textContent=x;$('#forig').textContent=c.o;$('#fsimp').textContent=c.s;$('#frest').textContent='限制：'+c.r;if(!c.v(x)){$('#fov').textContent='未定義';$('#fsv').textContent='不應代入';$('#fw').textContent=`x=${x} 是原式不能代的值。`}else{$('#fov').textContent=N(c.f(x));$('#fsv').textContent=N(c.g(x));$('#fw').textContent=''}}
+['fc','x'].forEach(id=>$('#'+id).addEventListener(id==='fc'?'change':'input',R2));
+
+/* reciprocal */
+function R3(){let m=$('#rm').value,v=+$('input#r').value;$('#ro').textContent=v;if(m==='p'){let a=v*v-2,b=v**3-3*v;$('#rg').textContent=`x + 1/x = ${v}`;$('#r2').textContent=a;$('#r3l').textContent='x³+1/x³';$('#r3').textContent=b;$('#rd').innerHTML=`平方：x²+1/x²=${v}²−2=<b>${a}</b>。<br>立方：x³+1/x³=${v}³−3×${v}=<b>${b}</b>。`}else{let a=v*v+2,b=v**3+3*v;$('#rg').textContent=`x − 1/x = ${v}`;$('#r2').textContent=a;$('#r3l').textContent='x³−1/x³';$('#r3').textContent=b;$('#rd').innerHTML=`平方：x²+1/x²=${v}²+2=<b>${a}</b>。<br>立方：x³−1/x³=${v}³+3×${v}=<b>${b}</b>。`}}
+['rm','r'].forEach(id=>$('#'+id).addEventListener(id==='rm'?'change':'input',R3));
+
+/* radicals */
+function SF(m){for(let k=Math.floor(Math.sqrt(m));k>=1;k--)if(m%(k*k)===0)return[k,m/(k*k)];return[1,m]}
+function R4(){let m=+$('input#rn').value,[k,r]=SF(m);$('#no').textContent=m;$('#rs').textContent=r===1?`√${m} = ${k}`:k===1?`√${m} 無法再化簡`:`√${m} = ${k}√${r}`;$('#rf').textContent=r===1?`${m} 是完全平方數。`:`${m}=${k*k}×${r}，所以 √${m}=√${k*k}·√${r}${k>1?'='+k+'√'+r:''}。`;let a=+$('input#aa').value;$('#aao').textContent=a;$('#aas').textContent=a*a;$('#aaresult').textContent=Math.abs(a);$('#aanote').innerHTML=`因為 √ 代表非負平方根，所以 a=${a} 時，√(a²)=<b>${Math.abs(a)}</b>=|a|。`}
+['rn','aa'].forEach(id=>$('#'+id).addEventListener('input',R4));
+
+/* rationalize + double */
+function R5a(){let p=+$('input#p').value,q=Math.max(0,Math.floor(+$('input#q').value||0));$('#q').value=q;$('#rexpr').textContent=`1/(${p}−√${q})`;$('#conj').textContent=`${p}+√${q}`;let d=p*p-q;if(d===0){$('#rres').textContent='這組數值需另行檢查';$('#rexp').textContent='因為 p²−q=0。';return}$('#rres').textContent=d===1?`${p}+√${q}`:d===-1?`−(${p}+√${q})`:`(${p}+√${q})/${d}`;$('#rexp').textContent=`同乘共軛後，分母變成 ${p}²−${q}=${d}。`}
+['p','q'].forEach(id=>$('#'+id).addEventListener('input',R5a));
+let SG='+';
+function R5b(){let u=+$('input#u').value,v=+$('input#v').value;$('#uo').textContent=u;$('#vo').textContent=v;let A=u+v,B=u*v;if(SG==='-'&&u<v){$('#dexpr').textContent=`√(${A}−2√${B}) = |√${u}−√${v}|`;$('#dexp').textContent='減號型要記得結果必須非負。'}else{$('#dexpr').textContent=`√(${A}${SG}2√${B}) = √${u}${SG}√${v}`;$('#dexp').textContent=`因為 ${u}+${v}=${A}、${u}×${v}=${B}，根號內就是一個完全平方。`}$$('[data-s]').forEach(b=>b.classList.toggle('active',b.dataset.s===SG))}
+['u','v'].forEach(id=>$('#'+id).addEventListener('input',R5b));$$('[data-s]').forEach(b=>b.addEventListener('click',()=>{SG=b.dataset.s;R5b()}));
+
+/* AM-GM */
+function R6(){let a=+$('input#am1').value,b=+$('input#am2').value,am=(a+b)/2,gm=Math.sqrt(a*b),gap=am-gm;$('#amo').textContent=a;$('#bmo').textContent=b;$('#amv').textContent=N(am);$('#gmv').textContent=N(gm);$('#gap').textContent=N(gap);let mx=Math.max(am,gm,1);$('#amb').style.width=am/mx*100+'%';$('#gmb').style.width=gm/mx*100+'%';$('#amn').textContent=N(am);$('#gmn').textContent=N(gm);$('#amnote').innerHTML=Math.abs(gap)<1e-9?`現在 <b>a=b=${a}</b>，所以 AM=GM，等號成立。`:'目前 AM > GM；把 a、b 拉到一樣就會出現等號。';let T=+$('input#ot').value,m=$('#om').value;$('#oto').textContent=T;if(m==='prod'){let rt=Math.sqrt(T);$('#oa').textContent=`ab=${T} 時，a+b 最小為 ${N(2*rt)}`;$('#oe').textContent=`發生在 a=b=√${T}≈${N(rt)}。`}else{let h=T/2;$('#oa').textContent=`a+b=${T} 時，ab 最大為 ${N(h*h)}`;$('#oe').textContent=`發生在 a=b=${N(h)}。`}}
+['am1','am2','ot'].forEach(id=>$('#'+id).addEventListener('input',R6));$('#om').addEventListener('change',R6);
+
+/* 100-question bank */
+const Q=(q,c,w,e)=>({q,c,w:U(w).filter(x=>x!==c).slice(0,2),e}), bank=[];
+
+/* 1-20 multiplication formulas */
+[
+['(a+b)²','a²+2ab+b²',['a²+b²','a²−2ab+b²']],['(a−b)²','a²−2ab+b²',['a²−b²','a²+2ab+b²']],['a²−b²','(a+b)(a−b)',['(a+b)²','(a−b)²']],
+['(a+b+c)²','a²+b²+c²+2ab+2bc+2ca',['a²+b²+c²+ab+bc+ca','a²+b²+c²+2abc']],['(a+b)³','a³+3a²b+3ab²+b³',['a³+a²b+ab²+b³','a³+3ab+b³']],
+['(a−b)³','a³−3a²b+3ab²−b³',['a³−3a²b−3ab²−b³','a³−b³']],['a³+b³','(a+b)(a²−ab+b²)',['(a+b)(a²+ab+b²)','(a−b)(a²+ab+b²)']],
+['a³−b³','(a−b)(a²+ab+b²)',['(a−b)(a²−ab+b²)','(a+b)(a²−ab+b²)']]
+].forEach(x=>bank.push(Q(`${x[0]} 等於哪一式？`,x[1],x[2],'這是本單元常用乘法公式。')));
+[[2,3],[4,1],[5,2],[3,-1]].forEach(([a,b])=>bank.push(Q(`(${a}+${b})² 的值？`,String((a+b)**2),[String(a*a+b*b),String((a-b)**2)],'可用平方公式或先算括號。')));
+[[5,2],[7,3],[4,1],[6,5]].forEach(([a,b])=>bank.push(Q(`${a}²−${b}² 的值？`,String(a*a-b*b),[String((a-b)**2),String((a+b)**2)],'平方差也可寫成 (a+b)(a−b)。')));
+[
+['x³−8','(x−2)(x²+2x+4)'],['x³+1','(x+1)(x²−x+1)'],['8x³+12x²+6x+1','(2x+1)³'],['x³−9x²+27x−27','(x−3)³']
+].forEach(([e,a])=>bank.push(Q(`因式分解 ${e}。`,a,['(x+2)(x²+2x+4)','(x−1)³'],'辨認立方和、立方差或完全立方。')));
+
+/* 21-35 fractions */
+[
+['(x²−4)/(x²+5x+6)','(x−2)/(x+3)，x≠−2,−3'],['x/(x²−1)−1/(x+1)','1/(x²−1)，x≠1,−1'],['(x−2)/(x+2)−(x+2)/(x−2)','−8x/(x²−4)，x≠2,−2']
+].forEach(([e,a])=>bank.push(Q(`化簡 ${e} 並保留限制。`,a,[a.split('，')[0],a.split('，')[0]+'，x≠0'],'原式分母為 0 的值不能因約分而消失。')));
+[[2,3],[3,4],[4,5],[5,6]].forEach(([a,b])=>bank.push(Q(`${a}/${b} × ${a}/${b} = ?`,F(a*a,b*b),[F(a*a,b),F(a,b*b)],'分子乘分子、分母乘分母，再約分。')));
+[['1/(x−2)','x≠2'],['1/(x+5)','x≠−5'],['(x+1)/(x²−9)','x≠3,−3'],['1/[x(x−4)]','x≠0,4']].forEach(([e,a])=>bank.push(Q(`${e} 的 x 限制？`,a,['沒有','x≠0'],'分母不可為 0。')));
+[['1/x+1/x','2/x'],['1/x−1/(2x)','1/(2x)'],['2/x+3/x','5/x'],['x/(x+1)+1/(x+1)','1']].forEach(([e,a])=>bank.push(Q(`化簡 ${e}。`,a,['1/x','0'],'同分母可合併分子。')));
+
+/* 36-50 x +/- 1/x */
+[3,4,5,6,7].forEach(s=>bank.push(Q(`已知 x+1/x=${s}，求 x²+1/x²。`,String(s*s-2),[String(s*s),String(s*s+2)],'(x+1/x)²=x²+2+1/x²。')));
+[3,4,5,6,7].forEach(s=>bank.push(Q(`已知 x+1/x=${s}，求 x³+1/x³。`,String(s**3-3*s),[String(s**3+3*s),String(s**3)],'x³+1/x³=(x+1/x)³−3(x+1/x)。')));
+[2,3,4,5,6].forEach(d=>bank.push(Q(`已知 x−1/x=${d}，求 x²+1/x²。`,String(d*d+2),[String(d*d-2),String(d*d)],'(x−1/x)²=x²−2+1/x²。')));
+
+/* 51-70 radicals */
+[8,12,18,20,27,32,45,48,50,72].forEach(m=>{let[k,r]=SF(m),a=r===1?String(k):k===1?`√${m}`:`${k}√${r}`;bank.push(Q(`化簡 √${m}。`,a,[`${k*k}√${r}`,`${k}√${r+1}`],`找最大的完全平方因數 ${k*k}。`))});
+[-5,-3,-1,0,2].forEach(a=>bank.push(Q(`a=${a} 時，√(a²)=?`,String(Math.abs(a)),[String(a),String(-a)],'√(a²)=|a|。')));
+[['1/√2','√2/2'],['1/√3','√3/3'],['2/√5','2√5/5'],['3/√7','3√7/7'],['5/√11','5√11/11']].forEach(([e,a])=>bank.push(Q(`將 ${e} 分母有理化。`,a,[e,'無法有理化'],'分子分母同乘根號即可。')));
+
+/* 71-85 rationalization/double radicals */
+[[2,3,'2+√3'],[3,2,'(3+√2)/7'],[4,5,'(4+√5)/11'],[5,6,'(5+√6)/19'],[3,5,'(3+√5)/4']].forEach(([p,q,a])=>bank.push(Q(`將 1/(${p}−√${q}) 分母有理化。`,a,[`1/(${p}+√${q})`,`${p}−√${q}`],`同乘共軛 ${p}+√${q}。`)));
+[
+['√(8+2√15)','√5+√3'],['√(5−2√6)','√3−√2'],['√(10−4√6)','√6−2'],['√(11+2√30)','√6+√5'],['√(7+4√3)','2+√3']
+].forEach(([e,a])=>bank.push(Q(`化簡 ${e}。`,a,['無法化簡','√'+e.replace(/\D/g,'')],'辨認成 (√u±√v)²。')));
+[['√(a²)','|a|'],['√(ab)，a,b≥0','√a·√b'],['√(a/b)，a≥0,b>0','√a/√b'],['1/(p−√q) 的共軛','p+√q'],['√(u+v+2√uv)','√u+√v']].forEach(([e,a])=>bank.push(Q(`${e} 應整理成？`,a,['a','無法整理'],'使用根式性質或共軛技巧。')));
+
+/* 86-100 AM-GM */
+[16,25,36,49,64].forEach(P=>{let rt=Math.sqrt(P);bank.push(Q(`a,b>0 且 ab=${P}，a+b 最小值？`,String(2*rt),[String(rt),String(P)],`a+b≥2√ab=${2*rt}，等號在 a=b=${rt}。`))});
+[10,12,14,16,18].forEach(S=>{let h=S/2;bank.push(Q(`a,b>0 且 a+b=${S}，ab 最大值？`,String(h*h),[String(S*S),String(h)],`固定和時，a=b=${h} 時乘積最大。`))});
+[
+['矩形面積 49，最小周長？','28',['14','49'],'正方形周長最小，邊長 7。'],['若 a=b=6，AM 與 GM？','AM=GM=6',['AM>GM','GM>AM'],'a=b 時等號成立。'],['a=4,b=9 的 AM？','6.5',['6','13'],'AM=(4+9)/2。'],['a=4,b=9 的 GM？','6',['6.5','36'],'GM=√36。'],['a,b≥0 時何者必成立？','(a+b)/2 ≥ √(ab)',['(a+b)/2 ≤ √(ab)','a+b ≥ ab'],'這就是算幾不等式。']
+].forEach(([q,c,w,e])=>bank.push(Q(q,c,w,e)));
+
+if(bank.length!==100)console.error('題庫數量',bank.length);
+let cur=[];
+function RQ(){cur=SH(bank).slice(0,5);let box=$('#qq');box.innerHTML='';cur.forEach((q,i)=>{let d=document.createElement('div');d.className='quizq';d.innerHTML=`<b>Q${i+1}. ${q.q}</b><div class="options"></div><div class="feedback"></div>`;let o=$('.options',d);SH([{t:q.c,ok:1},...q.w.map(t=>({t,ok:0}))]).forEach(ch=>{let l=document.createElement('label'),inp=document.createElement('input');inp.type='radio';inp.name='q'+i;inp.value=ch.ok;l.appendChild(inp);l.appendChild(document.createTextNode(' '+ch.t));o.appendChild(l)});box.appendChild(d)});$('#score').textContent=''}
+$('#check').addEventListener('click',()=>{let s=0;$$('.quizq',$('#qq')).forEach((d,i)=>{let x=$('input:checked',d),f=$('.feedback',d),q=cur[i];if(!x){f.textContent='尚未作答';f.className='feedback bad';return}let ok=x.value==='1';if(ok)s++;f.innerHTML=ok?`✓ 正確　<span style="font-weight:500">${q.e}</span>`:`✗ 正確答案：${q.c}<br><span style="font-weight:500">${q.e}</span>`;f.className='feedback '+(ok?'good':'bad')});$('#score').textContent=`得分：${s} / 5`});
+$('#clear').addEventListener('click',()=>{$$('#qq input').forEach(x=>x.checked=false);$$('.feedback',$('#qq')).forEach(x=>x.textContent='');$('#score').textContent=''});
+$('#new').addEventListener('click',()=>{RQ();$('#quiz').scrollIntoView({behavior:'smooth'})});
+
+R1();R2();R3();R4();R5a();R5b();R6();RQ();
+})();
+</script>
+</body></html>
