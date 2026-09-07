@@ -1,175 +1,554 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>式的運算｜互動學習實驗室</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="高二數學單元1：弧度量互動學習。弧度定義、度與弳換算、同界角、扇形弧長與面積、以弳為單位的三角比、摩天輪應用與隨機測驗。">
+<title>弧度量｜互動學習實驗室</title>
 <style>
-:root{--bg:#f7f8fb;--panel:#fff;--ink:#24334a;--muted:#68778a;--line:#dce2ea;--accent:#4168aa;--orange:#d78437;--green:#237a57;--red:#b44949;--soft:#eef3fb;--soft2:#fff4e7}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}button,input,select{font:inherit}button{cursor:pointer}
-header{background:linear-gradient(120deg,#3c609d,#505b78);color:#fff;padding:28px 20px}.wrap{max-width:1160px;margin:auto;padding:0 18px}.hero{display:grid;grid-template-columns:1.5fr .8fr;gap:20px;align-items:center}h1{font-size:clamp(28px,4vw,46px);margin:0 0 8px}.hero p{margin:0;color:#e9eef9}.badge{justify-self:end;background:#ffffff18;border:1px solid #ffffff44;border-radius:18px;padding:14px 18px}
-nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}.nav{display:flex;gap:6px;overflow:auto;padding:9px 18px;max-width:1160px;margin:auto}.nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:800;font-size:14px;padding:8px 10px;border-radius:9px}.nav a:hover{background:var(--soft)}
-main{padding:22px 0 40px}section{margin-bottom:22px;scroll-margin-top:70px}.title{display:flex;gap:10px;align-items:baseline;margin-bottom:10px}.title h2{margin:0;font-size:24px}.title span{color:var(--muted);font-size:14px}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px #24334a12}.grid2{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.5fr);gap:16px}.grid2e{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.control{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.control label{display:flex;justify-content:space-between;font-weight:800}input[type=range]{width:100%;accent-color:var(--accent)}select,input[type=number]{width:100%;padding:9px 10px;border:1px solid #bac5d3;border-radius:10px;background:#fff;color:var(--ink);font-size:16px}
-button{border:1px solid #bac5d3;background:#fff;color:var(--ink);border-radius:10px;padding:8px 11px;font-weight:800}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}button.warn{background:var(--soft2);border-color:#efc28d}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.note{background:var(--soft);border-left:4px solid var(--accent);padding:10px 12px;border-radius:9px}.result{border:1px solid var(--line);background:#fbfcfe;border-radius:14px;padding:12px}.formula{font-family:"Cambria Math","Times New Roman",serif;font-size:clamp(19px,3vw,28px);font-weight:900;text-align:center;background:#fbfcff;border:1px solid var(--line);border-radius:13px;padding:11px}
-.eq{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}.eqbox{border:1px solid var(--line);border-radius:13px;padding:12px;text-align:center;background:#fbfcfe}.eqsign{font-size:26px;font-weight:900;color:var(--green)}.big{display:block;font-size:24px;font-weight:900}.math{font-family:"Cambria Math","Times New Roman",serif}
-.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi>div{border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;background:#fbfcfe}.kpi b{display:block;color:var(--muted);font-size:12px}.kpi span{font-size:19px;font-weight:900}
-.pills{display:flex;gap:7px;flex-wrap:wrap}.pill{border-radius:999px}.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.barbox{border:1px solid var(--line);border-radius:14px;padding:14px}.barrow{display:grid;grid-template-columns:110px 1fr 60px;gap:9px;align-items:center;margin:9px 0}.bar{height:22px;border-radius:999px;background:#e8edf5;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:999px}.fill.orange{background:var(--orange)}
-.quizq{padding:13px 0;border-bottom:1px solid var(--line)}.options{display:grid;gap:6px;margin-top:8px}.options label{display:flex;gap:8px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}.options label:has(input:checked){border-color:var(--accent);background:var(--soft)}.feedback{margin-top:7px;font-weight:800}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}
-.warntext{color:var(--red);font-weight:800}.footer{text-align:center;color:var(--muted);font-size:13px;padding:16px}
-@media(max-width:850px){.hero,.grid2,.grid2e{grid-template-columns:1fr}.badge{justify-self:start}.kpi{grid-template-columns:1fr 1fr}}@media(max-width:540px){.wrap{padding:0 11px}.card{padding:13px}.eq{grid-template-columns:1fr}.eqsign{text-align:center}.barrow{grid-template-columns:90px 1fr 55px}}
+:root{
+  --bg:#f3f8fc;--panel:#fff;--ink:#17364d;--muted:#667d90;--line:#d7e4ed;
+  --accent:#1677a8;--accent2:#e18c3f;--green:#207a57;--red:#b84444;--purple:#6c62b5;
+  --soft:#eaf5fb;--soft2:#fff4e8;--shadow:0 8px 24px rgba(23,54,77,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.top{background:linear-gradient(120deg,#1777ad,#315c88);color:#fff;padding:28px 20px 24px}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+.hero{display:grid;grid-template-columns:1.55fr .8fr;gap:22px;align-items:center}
+h1{font-size:clamp(28px,4vw,46px);margin:0 0 8px}
+.hero p{margin:0;color:#e5f1f8}
+.badge{justify-self:end;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:15px 18px;min-width:245px}
+.badge strong{display:block;font-size:20px}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.navrow{display:flex;gap:7px;overflow:auto;padding:9px 18px;max-width:1180px;margin:auto}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:8px 11px;border-radius:10px;font-size:14px;font-weight:800}
+nav a:hover,nav a:focus{background:var(--soft)}
+main{padding:22px 0 42px}
+section{margin-bottom:22px;scroll-margin-top:72px}
+.section-title{display:flex;gap:10px;align-items:baseline;margin-bottom:11px}
+.section-title h2{margin:0;font-size:24px}
+.section-title span{color:var(--muted);font-size:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:minmax(290px,.9fr) minmax(0,1.55fr);gap:16px}
+.grid2even{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.control{border-top:1px solid var(--line);padding-top:10px}
+.control:first-child{border-top:0}
+.control label{display:flex;justify-content:space-between;gap:10px;font-weight:800}
+input[type=range]{width:100%;accent-color:var(--accent)}
+select,input[type=number],input[type=text]{width:100%;border:1px solid #b8cad6;border-radius:10px;padding:9px 10px;background:#fff;color:var(--ink);font-size:16px}
+button{border:1px solid #b8cad6;background:white;color:var(--ink);border-radius:10px;padding:8px 11px;font-weight:800}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button.warn{background:var(--soft2);border-color:#efc48f}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.note{background:var(--soft);border-left:4px solid var(--accent);border-radius:9px;padding:10px 12px}
+.result{border:1px solid var(--line);background:#fbfdff;border-radius:14px;padding:12px}
+.result strong.big{display:block;font-size:24px}
+.math{font-family:"Cambria Math","Times New Roman",serif}
+.formula{font-size:clamp(19px,3vw,28px);font-weight:900;text-align:center;padding:11px;border-radius:13px;background:#f9fbff;border:1px solid var(--line)}
+.canvasbox{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;padding:6px}
+svg{width:100%;height:auto;display:block}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{border-radius:999px;padding:7px 11px}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi div{border:1px solid var(--line);border-radius:12px;padding:9px;text-align:center;background:#fbfdff}
+.kpi b{display:block;color:var(--muted);font-size:12px}
+.kpi span{font-size:19px;font-weight:900}
+.eqgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.eqbox{border:1px solid var(--line);border-radius:13px;padding:12px;text-align:center;background:#fbfdff}
+.eqsign{font-size:26px;font-weight:900;color:var(--green)}
+.quizq{padding:13px 0;border-bottom:1px solid var(--line)}
+.quizq:last-child{border-bottom:0}
+.options{display:grid;gap:6px;margin-top:8px}
+.options label{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+.options label:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.feedback{margin-top:7px;font-weight:800}
+.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}
+.warning{color:var(--red);font-weight:800}
+.good{color:var(--green);font-weight:800}
+.footer{text-align:center;color:var(--muted);font-size:13px;padding:16px}
+@media(max-width:850px){.hero,.grid2,.grid2even{grid-template-columns:1fr}.badge{justify-self:start}.grid3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:0 11px}.card{padding:13px}.eqgrid{grid-template-columns:1fr}.eqsign{text-align:center}.kpi{grid-template-columns:1fr 1fr}.badge{width:100%;min-width:0}}
 </style>
 </head>
 <body>
-<header><div class="wrap hero"><div><h1>式的運算｜互動學習實驗室</h1><p>自己代數、驗證、化簡與比較，把乘法公式、分式、根式、算幾不等式真正看懂。</p></div><div class="badge"><b>先操作，再整理規律</b><br>乘法公式 · 分式 · 根式 · 有理化 · 算幾不等式</div></div></header>
-<nav><div class="nav"><a href="#f1">乘法公式</a><a href="#f2">分式</a><a href="#f3">x 與 1/x</a><a href="#f4">根式</a><a href="#f5">有理化／雙重根式</a><a href="#f6">算幾不等式</a><a href="#quiz">自我檢核</a></div></nav>
+<header class="top">
+  <div class="wrap hero">
+    <div>
+      <h1>弧度量｜互動學習實驗室</h1>
+      <p>把「弳是什麼、怎麼換算、怎麼算弧長與扇形面積」變成可以拖曳與觀察的數學。</p>
+    </div>
+    <div class="badge">
+      <strong>先動手，再找規律</strong>
+      <span>弧度 · 換算 · 同界角 · 扇形 · 三角比 · 應用</span>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="頁面導覽">
+  <div class="navrow">
+    <a href="#meaning">弧度的意義</a>
+    <a href="#convert">度 ↔ 弳</a>
+    <a href="#coterminal">同界角</a>
+    <a href="#sector">扇形弧長與面積</a>
+    <a href="#trig">弳與三角比</a>
+    <a href="#wheel">摩天輪應用</a>
+    <a href="#quiz">自我檢核</a>
+  </div>
+</nav>
 
 <main class="wrap">
-<section id="f1"><div class="title"><h2>1. 乘法公式實驗室</h2><span>把 a、b、c 換成數字驗證</span></div><div class="card grid2">
-<div><label><b>選公式</b></label><select id="fs"><option value="sp">(a+b)²</option><option value="sm">(a−b)²</option><option value="ds">a²−b²</option><option value="s3">(a+b+c)²</option><option value="cp">(a+b)³</option><option value="cm">(a−b)³</option><option value="sc">a³+b³</option><option value="dc">a³−b³</option></select>
-<div class="control"><label>a <output id="ao">2</output></label><input id="a" type="range" min="-6" max="6" step="1" value="2"></div><div class="control"><label>b <output id="bo">3</output></label><input id="b" type="range" min="-6" max="6" step="1" value="3"></div><div class="control" id="cw"><label>c <output id="co">1</output></label><input id="c" type="range" min="-6" max="6" step="1" value="1"></div>
-<div class="note">先看公式，再拖動數值。公式中的 a、b、c 換成任何數字都仍然成立。</div></div>
-<div><div class="formula" id="fid"></div><div class="eq" style="margin-top:12px"><div class="eqbox">左式<strong class="big" id="lv"></strong></div><div class="eqsign">=</div><div class="eqbox">右式<strong class="big" id="rv"></strong></div></div><div class="result" style="margin-top:10px" id="fstep"></div></div>
-</div></section>
+<section id="meaning">
+  <div class="section-title"><h2>1. 弧度的意義</h2><span>θ = s / r</span></div>
+  <div class="card grid2">
+    <div>
+      <div class="control"><label for="mr">半徑 r <output id="mrOut">5</output></label><input id="mr" type="range" min="2" max="10" step="0.5" value="5"></div>
+      <div class="control"><label for="mtheta">圓心角 θ（弳） <output id="mthetaOut">1</output></label><input id="mtheta" type="range" min="0.25" max="6.283" step="0.05" value="1"></div>
+      <div class="result">
+        <div class="math">s = rθ</div>
+        <strong class="big math" id="arcMeaning">s = 5</strong>
+        <div id="meaningExplain">當 θ=1 弳時，弧長剛好等於半徑。</div>
+      </div>
+      <div class="note"><b>1 弳的核心：</b>弧長 = 半徑。半徑不管變大或變小，只要弧長跟半徑一樣長，圓心角就是 1 弳。</div>
+    </div>
+    <div class="canvasbox">
+      <svg id="meaningSvg" viewBox="0 0 760 430" aria-label="弧度定義互動圖"></svg>
+    </div>
+  </div>
+</section>
 
-<section id="f2"><div class="title"><h2>2. 分式運算</h2><span>約分、通分，也別忘了原式限制</span></div><div class="card grid2">
-<div><label><b>選一個式子</b></label><select id="fc"><option value="1">(x−2)/(x+2) − (x+2)/(x−2)</option><option value="2">(x²−4)/(x²+5x+6)</option><option value="3">x/(x²−1) − 1/(x+1)</option></select><div class="control"><label>x <output id="xo">3</output></label><input id="x" type="range" min="-8" max="8" step=".5" value="3"></div><div class="note">分式化簡後，原式「分母不能為 0」的條件仍要保留。</div></div>
-<div><div class="formula" id="forig"></div><div class="result" style="margin-top:10px">化簡：<strong class="big math" id="fsimp"></strong><span id="frest"></span></div><div class="eq" style="margin-top:10px"><div class="eqbox">原式<strong id="fov"></strong></div><div class="eqsign">=</div><div class="eqbox">化簡式<strong id="fsv"></strong></div></div><div class="warntext" id="fw"></div></div>
-</div></section>
+<section id="convert">
+  <div class="section-title"><h2>2. 度與弳的換算</h2><span>180° = π 弳</span></div>
+  <div class="card grid2">
+    <div>
+      <div class="pills">
+        <button type="button" class="pill active" data-conv="deg">度 → 弳</button>
+        <button type="button" class="pill" data-conv="rad">弳 → 度</button>
+      </div>
+      <div class="control">
+        <label for="convInput" id="convLabel">輸入角度（度）</label>
+        <input id="convInput" type="number" value="60" step="1">
+      </div>
+      <div class="result">
+        <strong class="big math" id="convExact">60° = π/3 弳</strong>
+        <div id="convApprox">約 1.0472 弳</div>
+      </div>
+      <div class="note">度轉弳：乘上 π/180；弳轉度：乘上 180/π。</div>
+    </div>
+    <div>
+      <h3 style="margin-top:0">常見角快速對照</h3>
+      <div class="pills" id="specialAngles"></div>
+      <div class="kpi" style="margin-top:12px">
+        <div><b>度</b><span id="spDeg">60°</span></div>
+        <div><b>弳</b><span class="math" id="spRad">π/3</span></div>
+        <div><b>小數弳</b><span id="spDec">1.0472</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section id="f3"><div class="title"><h2>3. x 與 1/x 的公式連鎖</h2><span>從平方公式、立方公式往回推</span></div><div class="card grid2">
-<div><label><b>已知條件</b></label><select id="rm"><option value="p">x + 1/x = S</option><option value="m">x − 1/x = D</option></select><div class="control"><label>S 或 D <output id="ro">4</output></label><input id="r" type="range" min="-8" max="8" step="1" value="4"></div><div class="note">先把「平方」寫出來，會自然出現 x²+1/x²；再利用立方公式得到三次式。</div></div>
-<div><div class="formula" id="rg"></div><div class="kpi" style="margin-top:10px"><div><b>x²+1/x²</b><span id="r2"></span></div><div><b id="r3l"></b><span id="r3"></span></div><div><b>核心</b><span>乘法公式</span></div></div><div class="result" id="rd" style="margin-top:10px"></div></div>
-</div></section>
+<section id="coterminal">
+  <div class="section-title"><h2>3. 同界角</h2><span>相差 2π 的整數倍</span></div>
+  <div class="card grid2">
+    <div>
+      <div class="control"><label for="baseDeg">基準角（度） <output id="baseDegOut">60°</output></label><input id="baseDeg" type="range" min="-720" max="1080" step="15" value="60"></div>
+      <div class="control"><label for="turnK">再轉 k 圈 <output id="turnKOut">2</output></label><input id="turnK" type="range" min="-4" max="4" step="1" value="2"></div>
+      <div class="result">
+        <strong class="big" id="cotDeg">60° → 780°</strong>
+        <div class="math" id="cotRad">π/3 → 13π/3</div>
+        <div id="cotExplain">兩角相差 720° = 4π，所以同界。</div>
+      </div>
+      <div class="note">同界角不是「角度一樣」，而是轉完之後的<b>終邊位置一樣</b>。</div>
+    </div>
+    <div class="canvasbox"><svg id="cotSvg" viewBox="0 0 760 400" aria-label="同界角終邊示意圖"></svg></div>
+  </div>
+</section>
 
-<section id="f4"><div class="title"><h2>4. 根式運算</h2><span>化簡根號，並理解 √(a²)=|a|</span></div><div class="card grid2">
-<div><div class="control"><label>√n 中的 n <output id="no">18</output></label><input id="rn" type="range" min="1" max="200" step="1" value="18"></div><div class="result"><strong class="big math" id="rs"></strong><div id="rf"></div></div><div class="note" style="margin-top:10px">找出 n 裡最大的完全平方因數，就能把平方數移出根號。</div></div>
-<div><h3 style="margin-top:0">√(a²) 為什麼不是永遠等於 a？</h3><div class="control"><label>a <output id="aao">-3</output></label><input id="aa" type="range" min="-8" max="8" step="1" value="-3"></div><div class="eq"><div class="eqbox">a²<strong id="aas"></strong></div><div class="eqsign">→</div><div class="eqbox">√(a²)<strong id="aaresult"></strong></div></div><div class="note" id="aanote" style="margin-top:10px"></div></div>
-</div></section>
+<section id="sector">
+  <div class="section-title"><h2>4. 扇形的弧長與面積</h2><span>s=rθ，A=½r²θ</span></div>
+  <div class="card grid2">
+    <div>
+      <div class="control"><label for="sr">半徑 r <output id="srOut">10</output></label><input id="sr" type="range" min="1" max="20" step="0.5" value="10"></div>
+      <div class="control"><label for="stheta">圓心角 θ（弳） <output id="sthetaOut">2π/5</output></label><input id="stheta" type="range" min="0.1" max="6.283" step="0.05" value="1.257"></div>
+      <div class="kpi">
+        <div><b>弧長 s</b><span class="math" id="sectorArc">4π</span></div>
+        <div><b>面積 A</b><span class="math" id="sectorArea">20π</span></div>
+        <div><b>角度</b><span id="sectorDeg">72°</span></div>
+      </div>
+      <div class="note">這兩個公式的 θ 必須是<b>弳</b>。如果題目給的是度，要先換算。</div>
+    </div>
+    <div class="canvasbox"><svg id="sectorSvg" viewBox="0 0 760 430" aria-label="扇形弧長與面積互動圖"></svg></div>
+  </div>
+</section>
 
-<section id="f5"><div class="title"><h2>5. 有理化與雙重根式</h2><span>共軛與平方公式的另一種用法</span></div><div class="card grid2e">
-<div><h3 style="margin-top:0">分母有理化</h3><div class="grid2e"><div><label>p</label><input id="p" type="number" value="2"></div><div><label>q</label><input id="q" type="number" min="0" value="3"></div></div><div class="formula" id="rexpr" style="margin-top:10px"></div><div class="result">同乘共軛：<b class="math" id="conj"></b><strong class="big math" id="rres"></strong><div id="rexp"></div></div></div>
-<div><h3 style="margin-top:0">雙重根式生成器</h3><div class="grid2e"><div class="control"><label>u <output id="uo">5</output></label><input id="u" type="range" min="1" max="12" value="5"></div><div class="control"><label>v <output id="vo">3</output></label><input id="v" type="range" min="1" max="12" value="3"></div></div><div class="pills"><button class="pill active" data-s="+">加號型</button><button class="pill" data-s="-">減號型</button></div><div class="formula" id="dexpr" style="margin-top:10px"></div><div class="note" id="dexp"></div></div>
-</div></section>
+<section id="trig">
+  <div class="section-title"><h2>5. 以弳為單位的三角比</h2><span>sin(π/3) 就是 sin 60°</span></div>
+  <div class="card grid2">
+    <div>
+      <div class="control"><label for="trigDeg">角度 θ <output id="trigDegOut">60°</output></label><input id="trigDeg" type="range" min="-360" max="720" step="1" value="60"></div>
+      <div class="pills" id="trigSpecials"></div>
+      <div class="kpi" style="margin-top:12px">
+        <div><b>θ（弳）</b><span class="math" id="trigRad">π/3</span></div>
+        <div><b>sin θ</b><span id="sinVal">0.8660</span></div>
+        <div><b>cos θ</b><span id="cosVal">0.5000</span></div>
+        <div><b>tan θ</b><span id="tanVal">1.7321</span></div>
+        <div><b>象限</b><span id="quadVal">I</span></div>
+        <div><b>計算機</b><span>RAD</span></div>
+      </div>
+      <div class="note">如果計算機輸入的是弳，記得先確認模式是 <b>RAD</b>。</div>
+    </div>
+    <div class="canvasbox"><svg id="trigSvg" viewBox="0 0 760 430" aria-label="單位圓與弳三角比"></svg></div>
+  </div>
+</section>
 
-<section id="f6"><div class="title"><h2>6. 算幾不等式</h2><span>(a+b)/2 ≥ √(ab)，等號在 a=b</span></div><div class="card grid2">
-<div><div class="control"><label>a <output id="amo">4</output></label><input id="am1" type="range" min="0" max="20" step=".5" value="4"></div><div class="control"><label>b <output id="bmo">9</output></label><input id="am2" type="range" min="0" max="20" step=".5" value="9"></div><div class="kpi"><div><b>AM</b><span id="amv"></span></div><div><b>GM</b><span id="gmv"></span></div><div><b>差</b><span id="gap"></span></div></div><div class="note" id="amnote"></div></div>
-<div class="barbox"><div class="barrow"><b>算術平均</b><div class="bar"><div class="fill" id="amb"></div></div><span id="amn"></span></div><div class="barrow"><b>幾何平均</b><div class="bar"><div class="fill orange" id="gmb"></div></div><span id="gmn"></span></div><hr style="border:0;border-top:1px solid var(--line)"><label><b>最佳化小實驗</b></label><select id="om"><option value="prod">固定乘積 ab，找 a+b 最小值</option><option value="sum">固定和 a+b，找 ab 最大值</option></select><div class="control"><label>固定值 <output id="oto">64</output></label><input id="ot" type="range" min="4" max="144" step="1" value="64"></div><div class="result"><strong class="big" id="oa"></strong><div id="oe"></div></div></div>
-</div></section>
+<section id="wheel">
+  <div class="section-title"><h2>6. 摩天輪應用</h2><span>轉過的弳、走過的弧長、離地高度一起看</span></div>
+  <div class="card grid2">
+    <div>
+      <div class="control"><label for="wheelR">半徑 r（公尺） <output id="wheelROut">20</output></label><input id="wheelR" type="range" min="5" max="30" step="1" value="20"></div>
+      <div class="control"><label for="wheelCenter">圓心高度（公尺） <output id="wheelCenterOut">22</output></label><input id="wheelCenter" type="range" min="10" max="40" step="1" value="22"></div>
+      <div class="control"><label for="wheelPeriod">一圈時間（分鐘） <output id="wheelPeriodOut">18</output></label><input id="wheelPeriod" type="range" min="6" max="30" step="1" value="18"></div>
+      <div class="control"><label for="wheelTime">經過時間（分鐘） <output id="wheelTimeOut">6</output></label><input id="wheelTime" type="range" min="0" max="30" step="0.5" value="6"></div>
+      <div class="kpi">
+        <div><b>轉過弳數</b><span class="math" id="wheelTheta">2π/3</span></div>
+        <div><b>走過弧長</b><span id="wheelArc">41.89 m</span></div>
+        <div><b>離地高度</b><span id="wheelHeight">32.00 m</span></div>
+      </div>
+      <div class="note">設定為「從最低點出發、逆時針轉」。轉過角度 θ = 2π ×（時間 / 一圈時間）。</div>
+    </div>
+    <div class="canvasbox"><svg id="wheelSvg" viewBox="0 0 760 470" aria-label="摩天輪弧度應用互動圖"></svg></div>
+  </div>
+</section>
 
-<section id="quiz"><div class="title"><h2>7. 自我檢核</h2><span>100 題題庫，每次隨機抽 5 題</span></div><div class="card"><div class="note">每次從 <b>100 題</b>中隨機抽 5 題；批改後會顯示解析。想再練一組就按「重新出題」。</div><div id="qq"></div><div class="toolbar"><button class="primary" id="check">批改全部</button><button id="clear">清除答案</button><button class="warn" id="new">重新出題</button><strong id="score"></strong></div></div></section>
-<div class="footer">答錯時，回到上面的互動區改幾個數字，再看一次公式或不等式為什麼成立。</div>
+<section id="quiz">
+  <div class="section-title"><h2>7. 自我檢核</h2><span>100 題題庫，每次隨機抽 5 題</span></div>
+  <div class="card" id="quizBox">
+    <div class="note" style="margin-top:0">每次從 <b>100 題</b>中隨機抽 5 題。答完按「批改全部」，想再練一組就按「重新出題」。</div>
+    <div id="quizQuestions" aria-live="polite"></div>
+    <div class="toolbar">
+      <button class="primary" type="button" id="checkQuiz">批改全部</button>
+      <button type="button" id="clearQuiz">清除答案</button>
+      <button class="warn" type="button" id="newQuiz">重新出題</button>
+      <strong id="quizScore" style="padding:8px 0"></strong>
+    </div>
+  </div>
+</section>
+
+<div class="footer">先操作，再做題；如果答錯，就回上面的圖形把同一個概念再拖一次。</div>
 </main>
 
 <script>
-(()=>{
-const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const N=v=>Number.isFinite(v)?Number(v.toFixed(6)).toString():'未定義';
-const G=(a,b)=>{a=Math.abs(Math.trunc(a));b=Math.abs(Math.trunc(b));while(b)[a,b]=[b,a%b];return a||1};
-const F=(a,b)=>{if(b===0)return'未定義';if(b<0){a=-a;b=-b}const g=G(a,b);a/=g;b/=g;return b===1?String(a):`${a}/${b}`};
-const U=a=>[...new Set(a)], SH=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+(() => {
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg', PI=Math.PI;
+const ACC='#1677a8', ORANGE='#e18c3f', GREEN='#207a57', INK='#17364d', MUTED='#687f90', GRID='#d9e6ee', PURPLE='#6c62b5';
 
-/* formula lab */
-const FM={
-sp:['(a+b)² = a²+2ab+b²',0,(a,b,c)=>[(a+b)**2,a*a+2*a*b+b*b]],
-sm:['(a−b)² = a²−2ab+b²',0,(a,b,c)=>[(a-b)**2,a*a-2*a*b+b*b]],
-ds:['a²−b² = (a+b)(a−b)',0,(a,b,c)=>[a*a-b*b,(a+b)*(a-b)]],
-s3:['(a+b+c)² = a²+b²+c²+2ab+2bc+2ca',1,(a,b,c)=>[(a+b+c)**2,a*a+b*b+c*c+2*a*b+2*b*c+2*c*a]],
-cp:['(a+b)³ = a³+3a²b+3ab²+b³',0,(a,b,c)=>[(a+b)**3,a**3+3*a*a*b+3*a*b*b+b**3]],
-cm:['(a−b)³ = a³−3a²b+3ab²−b³',0,(a,b,c)=>[(a-b)**3,a**3-3*a*a*b+3*a*b*b-b**3]],
-sc:['a³+b³ = (a+b)(a²−ab+b²)',0,(a,b,c)=>[a**3+b**3,(a+b)*(a*a-a*b+b*b)]],
-dc:['a³−b³ = (a−b)(a²+ab+b²)',0,(a,b,c)=>[a**3-b**3,(a-b)*(a*a+a*b+b*b)]]
-};
-function R1(){let k=$('#fs').value,[id,use,cal]=FM[k],a=+$('input#a').value,b=+$('input#b').value,c=+$('input#c').value;$('#ao').textContent=a;$('#bo').textContent=b;$('#co').textContent=c;$('#cw').style.display=use?'block':'none';$('#fid').textContent=id;let [l,r]=cal(a,b,c);$('#lv').textContent=N(l);$('#rv').textContent=N(r);$('#fstep').innerHTML=`代入 a=${a}、b=${b}${use?'、c='+c:''} 後，左右兩邊都得到 <b>${N(l)}</b>。`}
-['fs','a','b','c'].forEach(id=>$('#'+id).addEventListener(id==='fs'?'change':'input',R1));
+function E(tag,attrs={},txt=''){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(txt)e.textContent=txt;return e}
+function clear(svg){while(svg.firstChild)svg.removeChild(svg.firstChild)}
+function gcd(a,b){a=Math.abs(Math.round(a));b=Math.abs(Math.round(b));while(b){[a,b]=[b,a%b]}return a||1}
+function frac(n,d=1){
+  if(d<0){n=-n;d=-d}
+  const g=gcd(n,d);n/=g;d/=g;
+  if(n===0)return '0';
+  if(d===1)return n===1?'π':n===-1?'-π':`${n}π`;
+  if(n===1)return `π/${d}`; if(n===-1)return `-π/${d}`;
+  return `${n}π/${d}`;
+}
+function degToPiText(deg){
+  const n=Math.round(deg),g=gcd(n,180);return frac(n/g,180/g);
+}
+function radApproxText(rad){
+  const q=rad/PI, denoms=[1,2,3,4,5,6,8,9,10,12,18];
+  let best={err:1e9,n:0,d:1};
+  denoms.forEach(d=>{const n=Math.round(q*d),err=Math.abs(q-n/d);if(err<best.err)best={err,n,d}});
+  return best.err<0.008?frac(best.n,best.d):Number(rad.toFixed(3)).toString();
+}
+function n(v,d=4){if(!Number.isFinite(v))return '未定義';if(Math.abs(v)<1e-10)v=0;return Number(v.toFixed(d)).toString()}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function uniq(a){return [...new Set(a)]}
+function polar(cx,cy,R,ang){return [cx+R*Math.cos(ang),cy-R*Math.sin(ang)]}
+function arcPath(cx,cy,R,a0,a1){
+  const p0=polar(cx,cy,R,a0),p1=polar(cx,cy,R,a1);
+  let d=a1-a0;while(d<0)d+=2*PI;const large=d>PI?1:0;
+  return `M ${p0[0]} ${p0[1]} A ${R} ${R} 0 ${large} 0 ${p1[0]} ${p1[1]}`;
+}
+function sectorPath(cx,cy,R,a0,a1){
+  const p0=polar(cx,cy,R,a0),p1=polar(cx,cy,R,a1);
+  let d=a1-a0;while(d<0)d+=2*PI;const large=d>PI?1:0;
+  return `M ${cx} ${cy} L ${p0[0]} ${p0[1]} A ${R} ${R} 0 ${large} 0 ${p1[0]} ${p1[1]} Z`;
+}
 
-/* fraction lab */
-const FC={
-1:{o:'(x−2)/(x+2) − (x+2)/(x−2)',s:'−8x/(x²−4)',r:'x ≠ 2, −2',v:x=>x!==2&&x!==-2,f:x=>(x-2)/(x+2)-(x+2)/(x-2),g:x=>-8*x/(x*x-4)},
-2:{o:'(x²−4)/(x²+5x+6)',s:'(x−2)/(x+3)',r:'x ≠ −2, −3',v:x=>x!==-2&&x!==-3,f:x=>(x*x-4)/(x*x+5*x+6),g:x=>(x-2)/(x+3)},
-3:{o:'x/(x²−1) − 1/(x+1)',s:'1/(x²−1)',r:'x ≠ 1, −1',v:x=>x!==1&&x!==-1,f:x=>x/(x*x-1)-1/(x+1),g:x=>1/(x*x-1)}
-};
-function R2(){let c=FC[$('#fc').value],x=+$('input#x').value;$('#xo').textContent=x;$('#forig').textContent=c.o;$('#fsimp').textContent=c.s;$('#frest').textContent='限制：'+c.r;if(!c.v(x)){$('#fov').textContent='未定義';$('#fsv').textContent='不應代入';$('#fw').textContent=`x=${x} 是原式不能代的值。`}else{$('#fov').textContent=N(c.f(x));$('#fsv').textContent=N(c.g(x));$('#fw').textContent=''}}
-['fc','x'].forEach(id=>$('#'+id).addEventListener(id==='fc'?'change':'input',R2));
+/* 1 弧度意義 */
+function renderMeaning(){
+  const r=Number($('#mr').value),th=Number($('#mtheta').value),s=r*th;
+  $('#mrOut').textContent=n(r,1);$('#mthetaOut').textContent=radApproxText(th);
+  $('#arcMeaning').textContent=`s = ${n(r,1)} × ${n(th,2)} = ${n(s,2)}`;
+  $('#meaningExplain').innerHTML=Math.abs(th-1)<0.03?`現在 θ≈1 弳，所以弧長 s≈r。這就是 <b>1 弳</b>的定義。`:`因為 θ=s/r，所以弧長是半徑的 <b>${n(th,2)}</b> 倍。`;
+  const svg=$('#meaningSvg');clear(svg);const cx=360,cy=235,R=130;
+  svg.appendChild(E('circle',{cx,cy,r:R,fill:'#f8fbfd',stroke:GRID,'stroke-width':2}));
+  const a0=0,a1=Math.min(th,2*PI);
+  svg.appendChild(E('path',{d:sectorPath(cx,cy,R,a0,a1),fill:'#eaf5fb',stroke:'none'}));
+  svg.appendChild(E('path',{d:arcPath(cx,cy,R,a0,a1),fill:'none',stroke:ORANGE,'stroke-width':8,'stroke-linecap':'round'}));
+  const p0=polar(cx,cy,R,a0),p1=polar(cx,cy,R,a1);
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p0[0],y2:p0[1],stroke:ACC,'stroke-width':3}));
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p1[0],y2:p1[1],stroke:ACC,'stroke-width':3}));
+  svg.appendChild(E('circle',{cx,cy,r:5,fill:INK}));
+  svg.appendChild(E('text',{x:cx+R/2,y:cy-12,fill:ACC,'font-size':18},`r=${n(r,1)}`));
+  svg.appendChild(E('text',{x:cx+10,y:cy-35,fill:PURPLE,'font-size':18},`θ=${radApproxText(th)} 弳`));
+  svg.appendChild(E('text',{x:360,y:55,'text-anchor':'middle',fill:ORANGE,'font-size':20,'font-weight':'bold'},`弧長 s=${n(s,2)}`));
+}
+['mr','mtheta'].forEach(id=>$('#'+id).addEventListener('input',renderMeaning));
 
-/* reciprocal */
-function R3(){let m=$('#rm').value,v=+$('input#r').value;$('#ro').textContent=v;if(m==='p'){let a=v*v-2,b=v**3-3*v;$('#rg').textContent=`x + 1/x = ${v}`;$('#r2').textContent=a;$('#r3l').textContent='x³+1/x³';$('#r3').textContent=b;$('#rd').innerHTML=`平方：x²+1/x²=${v}²−2=<b>${a}</b>。<br>立方：x³+1/x³=${v}³−3×${v}=<b>${b}</b>。`}else{let a=v*v+2,b=v**3+3*v;$('#rg').textContent=`x − 1/x = ${v}`;$('#r2').textContent=a;$('#r3l').textContent='x³−1/x³';$('#r3').textContent=b;$('#rd').innerHTML=`平方：x²+1/x²=${v}²+2=<b>${a}</b>。<br>立方：x³−1/x³=${v}³+3×${v}=<b>${b}</b>。`}}
-['rm','r'].forEach(id=>$('#'+id).addEventListener(id==='rm'?'change':'input',R3));
+/* 2 換算 */
+let convMode='deg';
+const specials=[0,30,45,60,90,120,135,150,180,225,270,360];
+specials.forEach(d=>{
+  const b=document.createElement('button');b.type='button';b.className='pill';b.textContent=d+'°';
+  b.addEventListener('click',()=>{showSpecial(d); if(convMode==='deg'){$('#convInput').value=d;renderConvert()}});
+  $('#specialAngles').appendChild(b);
+});
+function showSpecial(d){
+  $('#spDeg').textContent=d+'°';$('#spRad').textContent=degToPiText(d);$('#spDec').textContent=n(d*PI/180,4);
+  $$('#specialAngles .pill').forEach(b=>b.classList.toggle('active',b.textContent===d+'°'));
+}
+function parseRadInput(x){return Number(x)}
+function renderConvert(){
+  const v=Number($('#convInput').value);
+  $$('[data-conv]').forEach(b=>b.classList.toggle('active',b.dataset.conv===convMode));
+  if(convMode==='deg'){
+    $('#convLabel').textContent='輸入角度（度）';
+    const rad=v*PI/180;
+    $('#convExact').textContent=`${n(v,4)}° = ${degToPiText(v)} 弳`;
+    $('#convApprox').textContent=`約 ${n(rad,4)} 弳`;
+  }else{
+    $('#convLabel').textContent='輸入弳數（可輸入小數）';
+    const deg=v*180/PI;
+    $('#convExact').textContent=`${n(v,4)} 弳 = ${n(deg,4)}°`;
+    $('#convApprox').textContent=`也就是 ${n(v/PI,4)}π 弳`;
+  }
+}
+$$('[data-conv]').forEach(b=>b.addEventListener('click',()=>{convMode=b.dataset.conv;$('#convInput').value=convMode==='deg'?60:(PI/3).toFixed(4);renderConvert()}));
+$('#convInput').addEventListener('input',renderConvert);
+showSpecial(60);
 
-/* radicals */
-function SF(m){for(let k=Math.floor(Math.sqrt(m));k>=1;k--)if(m%(k*k)===0)return[k,m/(k*k)];return[1,m]}
-function R4(){let m=+$('input#rn').value,[k,r]=SF(m);$('#no').textContent=m;$('#rs').textContent=r===1?`√${m} = ${k}`:k===1?`√${m} 無法再化簡`:`√${m} = ${k}√${r}`;$('#rf').textContent=r===1?`${m} 是完全平方數。`:`${m}=${k*k}×${r}，所以 √${m}=√${k*k}·√${r}${k>1?'='+k+'√'+r:''}。`;let a=+$('input#aa').value;$('#aao').textContent=a;$('#aas').textContent=a*a;$('#aaresult').textContent=Math.abs(a);$('#aanote').innerHTML=`因為 √ 代表非負平方根，所以 a=${a} 時，√(a²)=<b>${Math.abs(a)}</b>=|a|。`}
-['rn','aa'].forEach(id=>$('#'+id).addEventListener('input',R4));
+/* 3 同界角 */
+function renderCot(){
+  const d=Number($('#baseDeg').value),k=Number($('#turnK').value),d2=d+360*k;
+  $('#baseDegOut').textContent=d+'°';$('#turnKOut').textContent=k;
+  $('#cotDeg').textContent=`${d}° → ${d2}°`;
+  $('#cotRad').textContent=`${degToPiText(d)} → ${degToPiText(d2)}`;
+  $('#cotExplain').textContent=`兩角相差 ${360*k}° = ${k===0?'0':(2*k)+'π'}，所以終邊相同。`;
+  const svg=$('#cotSvg');clear(svg);const cx=380,cy=210,R=130;
+  svg.appendChild(E('circle',{cx,cy,r:R,fill:'#fbfdff',stroke:GRID,'stroke-width':2}));
+  svg.appendChild(E('line',{x1:cx-R-35,y1:cy,x2:cx+R+35,y2:cy,stroke:MUTED,'stroke-width':1.5}));
+  svg.appendChild(E('line',{x1:cx,y1:cy+R+25,x2:cx,y2:cy-R-25,stroke:MUTED,'stroke-width':1.5}));
+  const ang=d*PI/180,p=polar(cx,cy,R,ang);
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:ACC,'stroke-width':4}));
+  svg.appendChild(E('circle',{cx:p[0],cy:p[1],r:6,fill:ORANGE}));
+  svg.appendChild(E('text',{x:380,y:48,'text-anchor':'middle',fill:INK,'font-size':20},`終邊位置只看角度除以 360° 的餘數`));
+  svg.appendChild(E('text',{x:p[0]+10,y:p[1]-10,fill:ACC,'font-size':17},`${((d%360)+360)%360}°`));
+}
+['baseDeg','turnK'].forEach(id=>$('#'+id).addEventListener('input',renderCot));
 
-/* rationalize + double */
-function R5a(){let p=+$('input#p').value,q=Math.max(0,Math.floor(+$('input#q').value||0));$('#q').value=q;$('#rexpr').textContent=`1/(${p}−√${q})`;$('#conj').textContent=`${p}+√${q}`;let d=p*p-q;if(d===0){$('#rres').textContent='這組數值需另行檢查';$('#rexp').textContent='因為 p²−q=0。';return}$('#rres').textContent=d===1?`${p}+√${q}`:d===-1?`−(${p}+√${q})`:`(${p}+√${q})/${d}`;$('#rexp').textContent=`同乘共軛後，分母變成 ${p}²−${q}=${d}。`}
-['p','q'].forEach(id=>$('#'+id).addEventListener('input',R5a));
-let SG='+';
-function R5b(){let u=+$('input#u').value,v=+$('input#v').value;$('#uo').textContent=u;$('#vo').textContent=v;let A=u+v,B=u*v;if(SG==='-'&&u<v){$('#dexpr').textContent=`√(${A}−2√${B}) = |√${u}−√${v}|`;$('#dexp').textContent='減號型要記得結果必須非負。'}else{$('#dexpr').textContent=`√(${A}${SG}2√${B}) = √${u}${SG}√${v}`;$('#dexp').textContent=`因為 ${u}+${v}=${A}、${u}×${v}=${B}，根號內就是一個完全平方。`}$$('[data-s]').forEach(b=>b.classList.toggle('active',b.dataset.s===SG))}
-['u','v'].forEach(id=>$('#'+id).addEventListener('input',R5b));$$('[data-s]').forEach(b=>b.addEventListener('click',()=>{SG=b.dataset.s;R5b()}));
+/* 4 扇形 */
+function renderSector(){
+  const r=Number($('#sr').value),th=Number($('#stheta').value),s=r*th,A=.5*r*r*th,deg=th*180/PI;
+  $('#srOut').textContent=n(r,1);$('#sthetaOut').textContent=radApproxText(th);
+  $('#sectorArc').textContent=n(s,3);$('#sectorArea').textContent=n(A,3);$('#sectorDeg').textContent=n(deg,1)+'°';
+  const svg=$('#sectorSvg');clear(svg);const cx=360,cy=265,R=145,a0=0,a1=Math.min(th,2*PI);
+  svg.appendChild(E('path',{d:sectorPath(cx,cy,R,a0,a1),fill:'#eaf5fb',stroke:ACC,'stroke-width':2}));
+  svg.appendChild(E('path',{d:arcPath(cx,cy,R,a0,a1),fill:'none',stroke:ORANGE,'stroke-width':8,'stroke-linecap':'round'}));
+  const p0=polar(cx,cy,R,a0),p1=polar(cx,cy,R,a1);
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p0[0],y2:p0[1],stroke:ACC,'stroke-width':3}));
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p1[0],y2:p1[1],stroke:ACC,'stroke-width':3}));
+  svg.appendChild(E('text',{x:360,y:55,'text-anchor':'middle',fill:INK,'font-size':20},`s = rθ = ${n(s,3)}`));
+  svg.appendChild(E('text',{x:360,y:88,'text-anchor':'middle',fill:GREEN,'font-size':20},`A = ½r²θ = ${n(A,3)}`));
+}
+['sr','stheta'].forEach(id=>$('#'+id).addEventListener('input',renderSector));
 
-/* AM-GM */
-function R6(){let a=+$('input#am1').value,b=+$('input#am2').value,am=(a+b)/2,gm=Math.sqrt(a*b),gap=am-gm;$('#amo').textContent=a;$('#bmo').textContent=b;$('#amv').textContent=N(am);$('#gmv').textContent=N(gm);$('#gap').textContent=N(gap);let mx=Math.max(am,gm,1);$('#amb').style.width=am/mx*100+'%';$('#gmb').style.width=gm/mx*100+'%';$('#amn').textContent=N(am);$('#gmn').textContent=N(gm);$('#amnote').innerHTML=Math.abs(gap)<1e-9?`現在 <b>a=b=${a}</b>，所以 AM=GM，等號成立。`:'目前 AM > GM；把 a、b 拉到一樣就會出現等號。';let T=+$('input#ot').value,m=$('#om').value;$('#oto').textContent=T;if(m==='prod'){let rt=Math.sqrt(T);$('#oa').textContent=`ab=${T} 時，a+b 最小為 ${N(2*rt)}`;$('#oe').textContent=`發生在 a=b=√${T}≈${N(rt)}。`}else{let h=T/2;$('#oa').textContent=`a+b=${T} 時，ab 最大為 ${N(h*h)}`;$('#oe').textContent=`發生在 a=b=${N(h)}。`}}
-['am1','am2','ot'].forEach(id=>$('#'+id).addEventListener('input',R6));$('#om').addEventListener('change',R6);
+/* 5 三角比 */
+const trigSpecialVals=[0,30,45,60,90,120,135,150,180,225,270,360];
+trigSpecialVals.forEach(d=>{
+  const b=document.createElement('button');b.type='button';b.className='pill';b.textContent=degToPiText(d);
+  b.addEventListener('click',()=>{$('#trigDeg').value=d;renderTrig()});$('#trigSpecials').appendChild(b);
+});
+function quadrant(d){
+  const x=((d%360)+360)%360;if(x===0||x===90||x===180||x===270)return '軸上';
+  if(x<90)return 'I';if(x<180)return 'II';if(x<270)return 'III';return 'IV';
+}
+function renderTrig(){
+  const d=Number($('#trigDeg').value),t=d*PI/180,s=Math.sin(t),c=Math.cos(t);
+  $('#trigDegOut').textContent=d+'°';$('#trigRad').textContent=degToPiText(d);$('#sinVal').textContent=n(s,4);$('#cosVal').textContent=n(c,4);
+  $('#tanVal').textContent=Math.abs(c)<1e-10?'未定義':n(Math.tan(t),4);$('#quadVal').textContent=quadrant(d);
+  $$('#trigSpecials .pill').forEach(b=>b.classList.toggle('active',b.textContent===degToPiText(d)));
+  const svg=$('#trigSvg');clear(svg);const cx=370,cy=220,R=135;
+  svg.appendChild(E('circle',{cx,cy,r:R,fill:'#fbfdff',stroke:GRID,'stroke-width':2}));
+  svg.appendChild(E('line',{x1:80,y1:cy,x2:680,y2:cy,stroke:MUTED,'stroke-width':1.5}));
+  svg.appendChild(E('line',{x1:cx,y1:70,x2:cx,y2:370,stroke:MUTED,'stroke-width':1.5}));
+  const p=polar(cx,cy,R,t);
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:ACC,'stroke-width':4}));
+  svg.appendChild(E('line',{x1:p[0],y1:p[1],x2:p[0],y2:cy,stroke:GREEN,'stroke-width':2,'stroke-dasharray':'5 4'}));
+  svg.appendChild(E('line',{x1:p[0],y1:p[1],x2:cx,y2:p[1],stroke:ORANGE,'stroke-width':2,'stroke-dasharray':'5 4'}));
+  svg.appendChild(E('circle',{cx:p[0],cy:p[1],r:6,fill:PURPLE}));
+  svg.appendChild(E('text',{x:p[0]+10,y:p[1]-10,fill:PURPLE,'font-size':16},`P(${n(c,2)}, ${n(s,2)})`));
+  svg.appendChild(E('text',{x:370,y:42,'text-anchor':'middle',fill:INK,'font-size':20},`θ = ${degToPiText(d)} = ${d}°`));
+}
+$('#trigDeg').addEventListener('input',renderTrig);
 
-/* 100-question bank */
-const Q=(q,c,w,e)=>({q,c,w:U(w).filter(x=>x!==c).slice(0,2),e}), bank=[];
+/* 6 摩天輪 */
+function renderWheel(){
+  const r=Number($('#wheelR').value),h0=Number($('#wheelCenter').value),T=Number($('#wheelPeriod').value),time=Number($('#wheelTime').value);
+  $('#wheelROut').textContent=r;$('#wheelCenterOut').textContent=h0;$('#wheelPeriodOut').textContent=T;$('#wheelTimeOut').textContent=time;
+  const theta=2*PI*time/T,arc=r*theta;
+  // from lowest point, CCW: height = center - r*cos(theta)
+  const height=h0-r*Math.cos(theta);
+  $('#wheelTheta').textContent=radApproxText(theta);$('#wheelArc').textContent=n(arc,2)+' m';$('#wheelHeight').textContent=n(height,2)+' m';
+  const svg=$('#wheelSvg');clear(svg);const cx=380,cy=220,R=150;
+  svg.appendChild(E('line',{x1:90,y1:390,x2:680,y2:390,stroke:'#8bb08c','stroke-width':4}));
+  svg.appendChild(E('circle',{cx,cy,r:R,fill:'#fbfdff',stroke:ACC,'stroke-width':4}));
+  for(let i=0;i<12;i++){const p=polar(cx,cy,R,i*PI/6);svg.appendChild(E('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:GRID,'stroke-width':1.5}))}
+  const ang=-PI/2-theta; // SVG polar uses y inversion, choose equivalent visual CCW from bottom
+  const p=polar(cx,cy,R,ang);
+  svg.appendChild(E('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:ORANGE,'stroke-width':4}));
+  svg.appendChild(E('circle',{cx:p[0],cy:p[1],r:11,fill:PURPLE,stroke:'#fff','stroke-width':3}));
+  svg.appendChild(E('text',{x:p[0]+14,y:p[1]-12,fill:PURPLE,'font-size':16},'甲'));
+  svg.appendChild(E('text',{x:380,y:42,'text-anchor':'middle',fill:INK,'font-size':19},`已轉過 ${n(time/T,3)} 圈 = ${radApproxText(theta)} 弳`));
+}
+['wheelR','wheelCenter','wheelPeriod','wheelTime'].forEach(id=>$('#'+id).addEventListener('input',renderWheel));
 
-/* 1-20 multiplication formulas */
+/* 7 題庫 100 題 */
+function Q(q,correct,wrong,explain){return {q,correct,wrong:uniq(wrong).filter(x=>x!==correct).slice(0,2),explain}}
+const bank=[];
+
+/* 1-20 度弳換算 */
+[0,18,30,45,60,72,90,120,135,150,180,210,225,240,270,300,315,330,360,540].forEach(d=>{
+  bank.push(Q(`${d}° 等於多少弳？`,degToPiText(d),[degToPiText(d+30),degToPiText(d-30)],`度轉弳乘上 π/180，所以 ${d}°=${degToPiText(d)}。`));
+});
+
+/* 21-35 弳轉度 */
 [
-['(a+b)²','a²+2ab+b²',['a²+b²','a²−2ab+b²']],['(a−b)²','a²−2ab+b²',['a²−b²','a²+2ab+b²']],['a²−b²','(a+b)(a−b)',['(a+b)²','(a−b)²']],
-['(a+b+c)²','a²+b²+c²+2ab+2bc+2ca',['a²+b²+c²+ab+bc+ca','a²+b²+c²+2abc']],['(a+b)³','a³+3a²b+3ab²+b³',['a³+a²b+ab²+b³','a³+3ab+b³']],
-['(a−b)³','a³−3a²b+3ab²−b³',['a³−3a²b−3ab²−b³','a³−b³']],['a³+b³','(a+b)(a²−ab+b²)',['(a+b)(a²+ab+b²)','(a−b)(a²+ab+b²)']],
-['a³−b³','(a−b)(a²+ab+b²)',['(a−b)(a²−ab+b²)','(a+b)(a²−ab+b²)']]
-].forEach(x=>bank.push(Q(`${x[0]} 等於哪一式？`,x[1],x[2],'這是本單元常用乘法公式。')));
-[[2,3],[4,1],[5,2],[3,-1]].forEach(([a,b])=>bank.push(Q(`(${a}+${b})² 的值？`,String((a+b)**2),[String(a*a+b*b),String((a-b)**2)],'可用平方公式或先算括號。')));
-[[5,2],[7,3],[4,1],[6,5]].forEach(([a,b])=>bank.push(Q(`${a}²−${b}² 的值？`,String(a*a-b*b),[String((a-b)**2),String((a+b)**2)],'平方差也可寫成 (a+b)(a−b)。')));
+ [1,12],[1,6],[1,4],[1,3],[2,5],[1,2],[2,3],[3,4],[5,6],[1,1],
+ [7,6],[5,4],[4,3],[3,2],[2,1]
+].forEach(([a,b])=>{
+  const deg=180*a/b;
+  bank.push(Q(`${frac(a,b)} 弳等於多少度？`,`${n(deg,3)}°`,[`${n(deg/2,3)}°`,`${n(deg*2,3)}°`],`弳轉度乘上 180/π，所以答案是 ${n(deg,3)}°。`));
+});
+
+/* 36-45 定義與同界 */
 [
-['x³−8','(x−2)(x²+2x+4)'],['x³+1','(x+1)(x²−x+1)'],['8x³+12x²+6x+1','(2x+1)³'],['x³−9x²+27x−27','(x−3)³']
-].forEach(([e,a])=>bank.push(Q(`因式分解 ${e}。`,a,['(x+2)(x²+2x+4)','(x−1)³'],'辨認立方和、立方差或完全立方。')));
+ Q('半徑為 r、弧長為 s，圓心角 θ（弳）為何？','θ=s/r',['θ=sr','θ=r/s'],'弧度定義就是 θ=s/r。'),
+ Q('當弧長等於半徑時，圓心角是多少弳？','1 弳',['π 弳','180 弳'],'這正是 1 弳的定義。'),
+ Q('半圓的圓心角是多少弳？','π 弳',['2π 弳','π/2 弳'],'180°=π 弳。'),
+ Q('一整圈是多少弳？','2π 弳',['π 弳','360π 弳'],'360°=2π 弳。'),
+ Q('1 弳最接近多少度？','57.3°',['45°','90°'],'1 弳=180/π≈57.3°。'),
+ Q('同界角彼此相差多少弳的整數倍？','2π',['π','π/2'],'同界角相差整圈，也就是 2π 的整數倍。'),
+ Q('π/3 與 7π/3 是否同界？','是',['否','只有正角才算同界'],'兩者相差 2π。'),
+ Q('π/3 與 5π/3 是否同界？','否',['是','只有差 π 就同界'],'兩者相差 4π/3，不是 2π 的整數倍。'),
+ Q('-π/4 與 7π/4 是否同界？','是',['否','無法判斷'],'兩者相差 2π。'),
+ Q('廣義角 1080° 等於多少弳？','6π',['3π','12π'],'1080°=3 圈=6π 弳。')
+].forEach(x=>bank.push(x));
 
-/* 21-35 fractions */
+/* 46-65 扇形 */
 [
-['(x²−4)/(x²+5x+6)','(x−2)/(x+3)，x≠−2,−3'],['x/(x²−1)−1/(x+1)','1/(x²−1)，x≠1,−1'],['(x−2)/(x+2)−(x+2)/(x−2)','−8x/(x²−4)，x≠2,−2']
-].forEach(([e,a])=>bank.push(Q(`化簡 ${e} 並保留限制。`,a,[a.split('，')[0],a.split('，')[0]+'，x≠0'],'原式分母為 0 的值不能因約分而消失。')));
-[[2,3],[3,4],[4,5],[5,6]].forEach(([a,b])=>bank.push(Q(`${a}/${b} × ${a}/${b} = ?`,F(a*a,b*b),[F(a*a,b),F(a,b*b)],'分子乘分子、分母乘分母，再約分。')));
-[['1/(x−2)','x≠2'],['1/(x+5)','x≠−5'],['(x+1)/(x²−9)','x≠3,−3'],['1/[x(x−4)]','x≠0,4']].forEach(([e,a])=>bank.push(Q(`${e} 的 x 限制？`,a,['沒有','x≠0'],'分母不可為 0。')));
-[['1/x+1/x','2/x'],['1/x−1/(2x)','1/(2x)'],['2/x+3/x','5/x'],['x/(x+1)+1/(x+1)','1']].forEach(([e,a])=>bank.push(Q(`化簡 ${e}。`,a,['1/x','0'],'同分母可合併分子。')));
-
-/* 36-50 x +/- 1/x */
-[3,4,5,6,7].forEach(s=>bank.push(Q(`已知 x+1/x=${s}，求 x²+1/x²。`,String(s*s-2),[String(s*s),String(s*s+2)],'(x+1/x)²=x²+2+1/x²。')));
-[3,4,5,6,7].forEach(s=>bank.push(Q(`已知 x+1/x=${s}，求 x³+1/x³。`,String(s**3-3*s),[String(s**3+3*s),String(s**3)],'x³+1/x³=(x+1/x)³−3(x+1/x)。')));
-[2,3,4,5,6].forEach(d=>bank.push(Q(`已知 x−1/x=${d}，求 x²+1/x²。`,String(d*d+2),[String(d*d-2),String(d*d)],'(x−1/x)²=x²−2+1/x²。')));
-
-/* 51-70 radicals */
-[8,12,18,20,27,32,45,48,50,72].forEach(m=>{let[k,r]=SF(m),a=r===1?String(k):k===1?`√${m}`:`${k}√${r}`;bank.push(Q(`化簡 √${m}。`,a,[`${k*k}√${r}`,`${k}√${r+1}`],`找最大的完全平方因數 ${k*k}。`))});
-[-5,-3,-1,0,2].forEach(a=>bank.push(Q(`a=${a} 時，√(a²)=?`,String(Math.abs(a)),[String(a),String(-a)],'√(a²)=|a|。')));
-[['1/√2','√2/2'],['1/√3','√3/3'],['2/√5','2√5/5'],['3/√7','3√7/7'],['5/√11','5√11/11']].forEach(([e,a])=>bank.push(Q(`將 ${e} 分母有理化。`,a,[e,'無法有理化'],'分子分母同乘根號即可。')));
-
-/* 71-85 rationalization/double radicals */
-[[2,3,'2+√3'],[3,2,'(3+√2)/7'],[4,5,'(4+√5)/11'],[5,6,'(5+√6)/19'],[3,5,'(3+√5)/4']].forEach(([p,q,a])=>bank.push(Q(`將 1/(${p}−√${q}) 分母有理化。`,a,[`1/(${p}+√${q})`,`${p}−√${q}`],`同乘共軛 ${p}+√${q}。`)));
+ [5,1],[6,2],[10,PI/3],[8,PI/2],[4,2*PI/3],[3,PI],[12,PI/6],[7,3*PI/4],[9,5*PI/6],[2,3*PI/2]
+].forEach(([r,t])=>{
+  const s=r*t;
+  bank.push(Q(`半徑 r=${r}，圓心角 θ=${radApproxText(t)} 弳，弧長 s 為何？`,n(s,3),[n(s/2,3),n(s*2,3)],`弧長公式 s=rθ。`));
+});
 [
-['√(8+2√15)','√5+√3'],['√(5−2√6)','√3−√2'],['√(10−4√6)','√6−2'],['√(11+2√30)','√6+√5'],['√(7+4√3)','2+√3']
-].forEach(([e,a])=>bank.push(Q(`化簡 ${e}。`,a,['無法化簡','√'+e.replace(/\D/g,'')],'辨認成 (√u±√v)²。')));
-[['√(a²)','|a|'],['√(ab)，a,b≥0','√a·√b'],['√(a/b)，a≥0,b>0','√a/√b'],['1/(p−√q) 的共軛','p+√q'],['√(u+v+2√uv)','√u+√v']].forEach(([e,a])=>bank.push(Q(`${e} 應整理成？`,a,['a','無法整理'],'使用根式性質或共軛技巧。')));
+ [5,1],[6,2],[10,PI/3],[8,PI/2],[4,2*PI/3],[3,PI],[12,PI/6],[7,3*PI/4],[9,5*PI/6],[2,3*PI/2]
+].forEach(([r,t])=>{
+  const A=.5*r*r*t;
+  bank.push(Q(`半徑 r=${r}，圓心角 θ=${radApproxText(t)} 弳，扇形面積 A 為何？`,n(A,3),[n(r*r*t,3),n(.5*r*t,3)],`扇形面積公式 A=½r²θ。`));
+});
 
-/* 86-100 AM-GM */
-[16,25,36,49,64].forEach(P=>{let rt=Math.sqrt(P);bank.push(Q(`a,b>0 且 ab=${P}，a+b 最小值？`,String(2*rt),[String(rt),String(P)],`a+b≥2√ab=${2*rt}，等號在 a=b=${rt}。`))});
-[10,12,14,16,18].forEach(S=>{let h=S/2;bank.push(Q(`a,b>0 且 a+b=${S}，ab 最大值？`,String(h*h),[String(S*S),String(h)],`固定和時，a=b=${h} 時乘積最大。`))});
+/* 66-75 已知弧長/面積反求 */
 [
-['矩形面積 49，最小周長？','28',['14','49'],'正方形周長最小，邊長 7。'],['若 a=b=6，AM 與 GM？','AM=GM=6',['AM>GM','GM>AM'],'a=b 時等號成立。'],['a=4,b=9 的 AM？','6.5',['6','13'],'AM=(4+9)/2。'],['a=4,b=9 的 GM？','6',['6.5','36'],'GM=√36。'],['a,b≥0 時何者必成立？','(a+b)/2 ≥ √(ab)',['(a+b)/2 ≤ √(ab)','a+b ≥ ab'],'這就是算幾不等式。']
-].forEach(([q,c,w,e])=>bank.push(Q(q,c,w,e)));
+ [6,12],[5,10],[8,4],[10,5],[3,9]
+].forEach(([r,s])=>{
+  const th=s/r;
+  bank.push(Q(`半徑 ${r}、弧長 ${s}，圓心角 θ 為多少弳？`,n(th,3),[n(r/s,3),n(r*s,3)],`θ=s/r。`));
+});
+[
+ [1,2],[2,4],[3,6],[4,8],[5,10]
+].forEach(([A,s])=>{
+  // From A=1/2 r s (since theta=s/r), r=2A/s, theta=s/r=s^2/(2A)
+  const r=2*A/s, th=s/r;
+  bank.push(Q(`扇形面積 A=${A}、弧長 s=${s}，圓心角 θ 為多少弳？`,n(th,3),[n(s/(2*A),3),n(A/s,3)],`由 A=½rs 可先求 r=2A/s，再用 θ=s/r。`));
+});
 
-if(bank.length!==100)console.error('題庫數量',bank.length);
-let cur=[];
-function RQ(){cur=SH(bank).slice(0,5);let box=$('#qq');box.innerHTML='';cur.forEach((q,i)=>{let d=document.createElement('div');d.className='quizq';d.innerHTML=`<b>Q${i+1}. ${q.q}</b><div class="options"></div><div class="feedback"></div>`;let o=$('.options',d);SH([{t:q.c,ok:1},...q.w.map(t=>({t,ok:0}))]).forEach(ch=>{let l=document.createElement('label'),inp=document.createElement('input');inp.type='radio';inp.name='q'+i;inp.value=ch.ok;l.appendChild(inp);l.appendChild(document.createTextNode(' '+ch.t));o.appendChild(l)});box.appendChild(d)});$('#score').textContent=''}
-$('#check').addEventListener('click',()=>{let s=0;$$('.quizq',$('#qq')).forEach((d,i)=>{let x=$('input:checked',d),f=$('.feedback',d),q=cur[i];if(!x){f.textContent='尚未作答';f.className='feedback bad';return}let ok=x.value==='1';if(ok)s++;f.innerHTML=ok?`✓ 正確　<span style="font-weight:500">${q.e}</span>`:`✗ 正確答案：${q.c}<br><span style="font-weight:500">${q.e}</span>`;f.className='feedback '+(ok?'good':'bad')});$('#score').textContent=`得分：${s} / 5`});
-$('#clear').addEventListener('click',()=>{$$('#qq input').forEach(x=>x.checked=false);$$('.feedback',$('#qq')).forEach(x=>x.textContent='');$('#score').textContent=''});
-$('#new').addEventListener('click',()=>{RQ();$('#quiz').scrollIntoView({behavior:'smooth'})});
+/* 76-90 三角比 */
+[
+ [0,'sin','0'],[30,'sin','1/2'],[45,'sin','√2/2'],[60,'sin','√3/2'],[90,'sin','1'],
+ [0,'cos','1'],[60,'cos','1/2'],[90,'cos','0'],[120,'cos','-1/2'],[180,'cos','-1'],
+ [45,'tan','1'],[60,'tan','√3'],[135,'tan','-1'],[225,'tan','1'],[270,'tan','未定義']
+].forEach(([d,fn,ans])=>{
+  bank.push(Q(`${fn}(${degToPiText(d)}) 的值為何？`,ans,
+    fn==='sin'?['0','1']:fn==='cos'?['1/2','√3/2']:['0','√3/3'],
+    `${degToPiText(d)}=${d}°，可先換成熟悉的角再判斷。`));
+});
 
-R1();R2();R3();R4();R5a();R5b();R6();RQ();
+/* 91-100 應用觀念 */
+[
+ Q('計算機以弳為單位輸入角度時，應使用哪個模式？','RAD',['DEG','GRAD'],'課本特別提醒要切到 RAD 模式。'),
+ Q('半徑 80 的車輪轉過 135°，輪緣走過的弧長可用哪個式子？','80×(3π/4)',['80×135','135/80'],'135°=3π/4，弧長 s=rθ。'),
+ Q('摩天輪 18 分鐘一圈，6 分鐘轉過多少弳？','2π/3',['π/3','4π/3'],'6/18=1/3 圈，所以轉過 2π/3。'),
+ Q('正三角形外接圓相鄰兩頂點的圓心角是多少弳？','2π/3',['π/3','π/2'],'正三角形把一圈 2π 平分成 3 份。'),
+ Q('已知弧長 s=4π、半徑 r=6，圓心角 θ 為何？','2π/3',['3π/2','24π'],'θ=s/r=4π/6=2π/3。'),
+ Q('若 θ=π/4、r=5√2，弧長為何？','5√2π/4',['5π/4','10√2π'],'s=rθ。'),
+ Q('7.2° 等於多少弳？','π/25',['π/20','π/50'],'7.2×π/180=π/25。'),
+ Q('若弧長 800 對應圓心角 π/25，半徑為何？','20000/π',['800π/25','25π/800'],'由 s=rθ，所以 r=s/θ=800÷(π/25)=20000/π。'),
+ Q('下列哪個扇形面積公式只在 θ 為弳時直接成立？','A=½r²θ',['A=πr²','A=rs'],'課本的扇形面積公式 A=½r²θ 中，θ 必須用弳。'),
+ Q('sin(π/3) 與哪一個值相同？','sin60°',['sin30°','cos60°'],'π/3=60°。')
+].forEach(x=>bank.push(x));
+
+if(bank.length!==100) console.error('題庫數量錯誤：',bank.length);
+
+let current=[];
+function renderQuiz(){
+  current=shuffle(bank.map((q,i)=>({i,...q}))).slice(0,5);
+  const box=$('#quizQuestions');box.innerHTML='';
+  current.forEach((q,qi)=>{
+    const item=document.createElement('div');item.className='quizq';
+    item.innerHTML=`<b>Q${qi+1}. ${q.q}</b><div class="options"></div><div class="feedback"></div>`;
+    const opts=$('.options',item);
+    shuffle([{t:q.correct,ok:true},...q.wrong.map(t=>({t,ok:false}))]).forEach(ch=>{
+      const lab=document.createElement('label'),inp=document.createElement('input');
+      inp.type='radio';inp.name=`q_${qi}`;inp.value=ch.ok?'1':'0';
+      lab.appendChild(inp);lab.appendChild(document.createTextNode(' '+ch.t));opts.appendChild(lab);
+    });
+    box.appendChild(item);
+  });
+  $('#quizScore').textContent='';
+}
+$('#checkQuiz').addEventListener('click',()=>{
+  let score=0;
+  $$('.quizq',$('#quizQuestions')).forEach((item,i)=>{
+    const sel=$('input:checked',item),fb=$('.feedback',item),q=current[i];
+    if(!sel){fb.textContent='尚未作答';fb.className='feedback bad';return}
+    const ok=sel.value==='1';if(ok)score++;
+    fb.innerHTML=ok?`✓ 正確　<span style="font-weight:500">${q.explain}</span>`:`✗ 正確答案：${q.correct}<br><span style="font-weight:500">${q.explain}</span>`;
+    fb.className='feedback '+(ok?'good':'bad');
+  });
+  $('#quizScore').textContent=`得分：${score} / 5`;
+  $('#quizScore').style.color=score===5?'var(--green)':'var(--ink)';
+});
+$('#clearQuiz').addEventListener('click',()=>{
+  $$('#quizQuestions input[type=radio]').forEach(x=>x.checked=false);
+  $$('.feedback',$('#quizQuestions')).forEach(x=>{x.textContent='';x.className='feedback'});
+  $('#quizScore').textContent='';
+});
+$('#newQuiz').addEventListener('click',()=>{renderQuiz();$('#quiz').scrollIntoView({behavior:'smooth',block:'start'})});
+
+renderMeaning();renderConvert();renderCot();renderSector();renderTrig();renderWheel();renderQuiz();
 })();
 </script>
-</body></html>
+</body>
+</html>
